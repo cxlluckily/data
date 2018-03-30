@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<table mysql="OWNER_ORDER" hbase="SKP:ORDER_INFO" columnFamily="D"
+		columnPrefix="ORDER_" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column mysql="ORDER_NO" prefix="false" />
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column hbase="ORDER_TYPE" handlerClass="OrderTypeConvertor" prefix="false"/>
+	</table>
+
+	<table mysql="OWNER_ORDER_OPT_HIST" hbase="SKP:ORDER_INFO"
+		columnFamily="D" columnPrefix="OPT_" scope="specified" topic="order">
+		<criteria>
+			<column mysql="OPT_EVENT" value="3" />
+			<column mysql="OPT_RESULT" value="SUCCESS" />
+		</criteria>
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column mysql="ID" />
+		<column mysql="ORDER_NO" />
+		<column mysql="OPT_EVENT" />
+		<column mysql="OPT_RESULT" />
+		<column mysql="OPT_DATE" />
+		<column mysql="OUT_TICKET_DEVICE_ID" />
+		<column mysql="ORDER_NO" prefix="false" />
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+	</table>
+
+	<table mysql="OWNER_ORDER_SINGLE_TICKET" hbase="SKP:ORDER_INFO"
+		columnFamily="D" columnPrefix="TICKET_" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column mysql="ORDER_NO" prefix="false" />
+	</table>
+
+	<table mysql="OWNER_ORDER_TOPUP_SUBWAY_CARD" hbase="SKP:ORDER_INFO"
+		columnFamily="D" columnPrefix="TOPUP_" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column mysql="ORDER_NO" prefix="false" />
+	</table>
+
+	<table mysql="TR_ORDER_THRID" hbase="SKP:ORDER_INFO"
+		columnFamily="D" columnPrefix="PAY_" scope="specified" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="EXT_ORDER_ID" />
+		</rowkey>
+
+		<criteria>
+			<column mysql="STATE" value="2" />
+		</criteria>
+		<column mysql="ORDER_ID" />
+		<column mysql="EXT_ORDER_ID" />
+		<column mysql="ENABLED" />
+		<column mysql="PAYMENT_TYPE" />
+		<column mysql="STATE" />
+		<column mysql="CASH_AMOUNT" />
+		<column mysql="PAY_ACCOUNT" />
+		<column mysql="REFUND_AMOUNT" />
+		<column mysql="CREATE_TIME" />
+		<column mysql="PAY_TIME" />
+		<column mysql="REFUND_TIME" />
+		<column mysql="MODIFY_TIME" />
+		<column mysql="SOURCE" />
+		<column mysql="PARTNER_NO" />
+		<column mysql="TOTAL_AMOUNT" />
+		<column mysql="COUPON_AMOUNT" />
+		<column mysql="REFUND_STATE" />
+		<column mysql="PARTNER_NO" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column mysql="EXT_ORDER_ID" hbase="ORDER_NO" prefix="false" />
+	</table>
+
+	<table mysql="TR_REDEMPTION" hbase="SKP:ORDER_INFO" columnFamily="D"
+		columnPrefix="PAY_" scope="specified" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="EXT_ORDER_NO" />
+		</rowkey>
+		<criteria>
+			<column mysql="CASH_BACK_MODE" value="3" />
+			<column mysql="STATE" value="4" />
+		</criteria>		
+		<column mysql="TRADE_ID" hbase="ORDER_ID" />
+		<column mysql="EXT_ORDER_NO" hbase="EXT_ORDER_ID" />
+		<column mysql="ENABLED" />
+		<column mysql="FROM_ACCOUNT_ID" hbase="PAY_ACCOUNT" />
+		<column mysql="STATE" />
+		<column mysql="CASH_AMOUNT" />
+		<column mysql="CREATE_TIME" />
+		<column mysql="MODIFY_TIME" />
+		<column mysql="PAY_TIME" />
+		<column mysql="PARTNER_NO" />
+		<column mysql="SOURCE" />
+		<column mysql="REFUND_AMOUNT" />
+		<column mysql="REFUND_TIME" />
+		<column mysql="COUPON_AMOUNT" />
+		<column mysql="TOTAL_AMOUNT" />
+		<column mysql="REFUND_STATE" />
+		<column mysql="PARTNER_NO" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column mysql="EXT_ORDER_NO" hbase="ORDER_NO" prefix="false" />
+		<column hbase="PAYMENT_TYPE" value="PC" />
+	</table>
+	
+	<!-- 银联闪付 -->
+	<table mysql="OWNER_ORDER_POS_PAY_INFO" hbase="SKP:ORDER_INFO"
+		columnFamily="D" columnPrefix="PAY_" scope="specified" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<criteria>
+			<column mysql="TRANS_TYPE" value="00" />
+		</criteria>			
+		<column mysql="ID" hbase="ORDER_ID" />
+		<column mysql="ORDER_NO" hbase="EXT_ORDER_ID" />
+		<column mysql="CARD_NO" hbase="PAY_ACCOUNT" />
+		<column mysql="AMOUNT" hbase="TOTAL_AMOUNT" />
+		<column hbase="PAY_TIME" handlerClass="PosPayConvertor"/>
+		<column mysql="DISCOUNT_AMOUNT" hbase="COUPON_AMOUNT" />
+		<column mysql="REG_DATE" hbase="CREATE_TIME" />
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column mysql="ORDER_NO" prefix="false"/>
+		<column hbase="PAYMENT_TYPE" value="YLSF" />
+	</table>
+	
+	<!-- 先享后付 -->
+	<table mysql="METRO_MEMBER_DEBIT_REQUEST_RECORD" hbase="SKP:ORDER_INFO" columnPrefix="XXHF_"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE"/>
+			<column mysql="DEBIT_REQUEST_ORDER_NO" />
+		</rowkey>
+		<column mysql="DEBIT_REQUEST_ORDER_NO" hbase="ORDER_NO" prefix="false" />
+		<column hbase="CITY_CODE" prefix="false"/>
+		<column hbase="ORDER_TYPE" value="3" prefix="false" />
+	</table>
+	<!-- 先付后享 -->
+	<table mysql="SJT_QR_CODE" hbase="SKP:ORDER_INFO" columnFamily="D" columnPrefix="XFHX_"
+		topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<!-- <column hbase="ORDER_TYPE" value="4" prefix="false" /> -->
+		<column mysql="ORDER_NO" prefix="false" />
+	</table>
+	<!-- 咖啡 -->
+	<table mysql="T_TASTE_ORDER" hbase="SKP:ORDER_INFO" columnPrefix="COFFEE_"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+		<column mysql="PARTNER_ID" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+		<column hbase="ORDER_TYPE" value="5" prefix="false" />
+		<column mysql="ORDER_NO" prefix="false" />
+	</table>
+	<!-- ******************************** order_info合并结束 ******************************** -->
+	
+	<!-- ******************************** 单表复制 -开始 ******************************** -->
+	<table mysql="OWNER_ORDER" hbase="SKP:OWNER_ORDER" hbaseHist="SKP:OWNER_ORDER_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="OWNER_ORDER_OPT_HIST" hbase="SKP:OWNER_ORDER_OPT_HIST"
+		hbaseHist="SKP:OWNER_ORDER_OPT_HIST_HIST" columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="OWNER_ORDER_SINGLE_TICKET" hbase="SKP:OWNER_ORDER_SINGLE_TICKET"
+		hbaseHist="SKP:OWNER_ORDER_SINGLE_TICKET_HIST" columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="OWNER_ORDER_TOPUP_SUBWAY_CARD" hbase="SKP:OWNER_ORDER_TOPUP_SUBWAY_CARD"
+		hbaseHist="SKP:OWNER_ORDER_TOPUP_SUBWAY_CARD_HIST" columnFamily="D"
+		topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="TR_ORDER_THRID" hbase="SKP:TR_ORDER_THRID"
+		hbaseHist="SKP:TR_ORDER_THRID_HIST" columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_ID" />
+		</rowkey>
+		<column mysql="PARTNER_NO" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="TR_REDEMPTION" hbase="SKP:TR_REDEMPTION"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="TRADE_ID" />
+		</rowkey>
+
+		<column mysql="PARTNER_NO" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<!-- 银联闪付 -->
+	<table mysql="OWNER_ORDER_POS_PAY_INFO" hbase="SKP:OWNER_ORDER_POS_PAY_INFO"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<!-- ******************************** 单表复制-结束 ******************************** -->
+
+
+	<!-- ******************************** sttrade tables ******************************** -->
+	<table mysql="OWNER_ORDER_HIST" hbase="SKP:OWNER_ORDER_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+
+	</table>
+
+	<table mysql="OWNER_ORDER_OPT_HIST_HIST" hbase="SKP:OWNER_ORDER_OPT_HIST_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+
+	</table>
+
+	<table mysql="OWNER_ORDER_SINGLE_TICKET_HIST" hbase="SKP:OWNER_ORDER_SINGLE_TICKET_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+
+	<table mysql="OWNER_ORDER_TOPUP_SUBWAY_CARD_HIST" hbase="SKP:OWNER_ORDER_TOPUP_SUBWAY_CARD_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="TR_ORDER_THRID_HIS" hbase="SKP:TR_ORDER_THRID_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<!-- 该处和合并表的rowkey字段不一致，是为了保持此表记录唯一性。 删除该条记录时，要从合并表里找到该字段值，给成此处的rowkey再决定是否删除 -->
+			<column mysql="ORDER_ID" />
+		</rowkey>
+		<column mysql="PARTNER_NO" hbase="CITY_CODE" handlerClass="CityConvertor" prefix="false"/>
+	</table>
+
+	<table mysql="PRODUCT" hbase="SKP:PRODUCT" columnFamily="D"
+		topic="order">
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="PRODUCT_CODE" />
+		</rowkey>
+	</table>
+
+	<table mysql="STATION_CODE" hbase="SKP:STATION_CODE"
+		columnFamily="D">
+		<rowkey>
+			<column mysql="CITY_CODE" />
+			<column mysql="LINE_CODE" />
+			<column mysql="STATION_CODE" />
+		</rowkey>
+	</table>
+
+	<!-- ******************************** sttrade tables ******************************** -->
+
+	<!-- ******************************** device tables start ******************************** -->
+	<table mysql="BASI_DEV_INFO" hbase="SKP:DEVICE_INFO"
+		columnFamily="D" topic="device">
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="DEVICE_ID" />
+		</rowkey>
+	</table>
+	
+	<table mysql="DEVICE_HEART_BEAT" hbase="SKP:DEVICE_HEART_BEAT"
+		columnFamily="D" topic="device">
+		<hashkey/>
+		<rowkey>
+			<column mysql="CITY_CODE" />
+			<column mysql="DEVICE_ID" />
+			<column mysql="BEAT_DATE" />
+		</rowkey>
+	</table>
+	
+	<table mysql="BASI_STATUS_ID_INFO" hbase="SKP:DEVICE_STATUS_DIC"
+		columnFamily="D" topic="device">
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="CSS_STATUS_ID" />
+			<column mysql="CSS_STATUS_VALUE" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="DEV_RUN_STATUS_INFO" hbase="SKP:DEVICE_STATUS"
+		columnFamily="D" topic="device">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="DEVICE_ID" />
+			<column mysql="STATUS_ID" />
+			<column mysql="UPDATE_DATE" />
+			<column mysql="UPDATE_TIME" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="LINE_CODE" hbase="SKP:LINE_CODE" columnFamily="D"
+		topic="device">
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="LINE_CODE" />
+		</rowkey>
+	</table>
+	<!-- ******************************** device tables end ******************************** -->
+
+	<!-- ******************************** 乘车码 ******************************** -->
+	<table mysql="METRO_MEMBER_CARD_NUM_POOL" hbase="SKP:METRO_MEMBER_CARD_NUM_POOL"
+		columnFamily="D"
+		topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="TICKET_LOGICAL_NUM" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="METRO_MEMBER_CARD_SUBSCRIPTION" hbase="SKP:METRO_MEMBER_CARD_SUBSCRIPTION"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="METRO_MEMBER_CARD_NUM" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="METRO_MEMBER_DEBIT_REQUEST_RECORD" hbase="SKP:METRO_MEMBER_DEBIT_REQUEST_RECORD"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+	</table>
+	
+	<table mysql="METRO_MEMBER_SUBSCRIPTION_TRANS" hbase="SKP:METRO_MEMBER_SUBSCRIPTION_TRANS"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="METRO_MEMBER_INFO" hbase="SKP:METRO_MEMBER_INFO"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="CUSTOMER_ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="METRO_MEMBER_REAL_NAME" hbase="SKP:METRO_MEMBER_REAL_NAME"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="CUSTOMER_ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="SJT_QR_CODE" hbase="SKP:SJT_QR_CODE" columnFamily="D"
+		topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ORDER_NO" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="SJT_QR_CODE_OPT_HIST" hbase="SKP:SJT_QR_CODE_OPT_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+		<column header="schemaName" hbase="CITY_CODE" handlerClass="CityConvertor" />
+	</table>
+	
+	<table mysql="DATA_YPT_TRAN" hbase="SKP:DATA_YPT_TRAN" hbaseHist="SKP:DATA_YPT_TRAN_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+	</table>
+
+	<table mysql="DATA_YPT_TRAN_HIST" hbase="SKP:DATA_YPT_TRAN_HIST"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column hbase="CITY_CODE" />
+			<column mysql="ID" />
+		</rowkey>
+	</table>
+
+	<!-- ********************************************************************* -->
+
+	<!-- ************************************咖啡********************************* -->
+
+	<table mysql="T_TASTE_ORDER" hbase="COFFEE:T_TASTE_ORDER"
+		columnFamily="D" topic="order">
+		<hashkey/>
+		<rowkey>
+			<column mysql="ID" />
+		</rowkey>
+		<column mysql="PARTNER_ID" hbase="CITY_CODE" handlerClass="CityConvertor"/>
+	</table>
+
+</config>

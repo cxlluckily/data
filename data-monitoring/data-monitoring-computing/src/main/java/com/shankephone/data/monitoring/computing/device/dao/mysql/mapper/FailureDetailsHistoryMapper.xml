@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.shankephone.data.monitoring.computing.device.dao.mysql.FailureDetailsHistoryDao">
+
+	<insert id="insert"
+		parameterType="com.shankephone.data.monitoring.computing.device.model.FailureDetailsHistory">
+		INSERT INTO FAILURE_DETAILS_HISTORY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			city_code,
+			city_name,
+			line_code,
+			line_name,
+			station_code,
+			station_name,
+			device_id,
+			device_name,
+			device_type,
+			device_type_name,
+			status_id,
+			status_value,
+			reason,
+			failure_time,
+			recover_time,
+			create_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{city_code},
+			#{city_name},
+			#{line_code},
+			#{line_name},
+			#{station_code},
+			#{station_name},
+			#{device_id},
+			#{device_name},
+			#{device_type},
+			#{device_type_name},
+			#{status_id},
+			#{status_value},
+			#{reason},
+			#{failure_time},
+			#{recover_time},
+			#{create_time}
+		</trim> ON DUPLICATE KEY UPDATE 
+		status_value = values(status_value), recover_time = values(recover_time)
+	</insert>
+
+
+	<update id="updateStatus" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureDetailsHistory">
+		update FAILURE_DETAILS_HISTORY set status_value = #{status_value} where city_code = #{city_code} and device_id = #{device_id} and status_id = #{status_id}
+  		and recover_time is null
+	</update>
+
+	<delete id="deleteHistoryDetail" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureDetailsHistory">
+  		delete from FAILURE_DETAILS_HISTORY where city_code = #{city_code} and device_id = #{device_id} and status_id = #{status_id}
+  		and recover_time is null
+  	</delete>
+  	
+  	<update id="recoverFailure" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureDetailsHistory">
+  		update FAILURE_DETAILS_HISTORY set recover_time = #{recover_time} where city_code = #{city_code} and device_id = #{device_id} and status_id = #{status_id}
+  		and recover_time is null
+  	</update>
+  	
+  	<select id="selectPK" resultType="map">
+  		select city_code, device_id, status_id, failure_time, status_value, create_time from FAILURE_DETAILS_HISTORY 
+  		where city_code = #{city_code} and device_id = #{device_id} and status_id = #{status_id} 
+  		and recover_time is null
+  	</select>
+
+
+</mapper>

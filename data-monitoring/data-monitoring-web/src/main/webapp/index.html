@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪客蜂</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="css/dialog.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/sockjs.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/json3.min.js"></script>
+<script src="js/template-web.js"></script>
+<script src="js/sub.js"></script>
+<script src="js/station-gz.js"></script>
+<script src="js/index.js"></script>
+<script src="js/deviceStatusMap.js"></script>
+<script src="js/jqPaginator.js"></script>
+<script id="stationDetail" type="text/html">
+  <table cellspacing="0" cellpadding="0" class="nfloatlayer_table">
+    <tr>
+      <th>序号</th>
+      <th>设备编号</th>
+      <th>故障类型</th>
+      <th>故障时间</th>
+      <th>故障时长（分钟）</th>
+      <th>设备地址</th>
+    </tr>
+	{{each machine}}
+		<tr>
+     	 	<td>{{$index + 1}}</td>
+     	 	<td>{{$value.deviceId}}</td>
+            <td>
+				{{if $value.failureType == null}}
+                  ---
+                {{else}}
+				  {{each $value.failureType}}
+					  {{if $value=="停止运营"}}
+						<span class="gz_stop">
+					  {{else if $value=="维修模式"}}
+						<span class="gz_xiu">
+					  {{else if $value=="故障模式"}}
+						<span class="gz_gz">
+					  {{else if $value=="离线模式"}}
+						<span class="gz_off">
+					  {{/if}}
+                      {{$value}}</span>
+				{{/each}}
+                {{/if}}
+			</td>
+			<td>{{$value.failureTime == null ? "---" : $value.failureTime}}</td>
+			<td>{{$value.duration == null ? "---" : $value.duration}}</td>
+      		<td>{{$value.areaCode}}</td>
+    	</tr>
+	{{/each}}
+  </table>
+</script>
+
+<script id="recordDetail" type="text/html">
+    <table cellspacing="0" cellpadding="0" class="recordlayer_table">
+      <tr>
+        <th>序号</th>
+        <th>设备站点</th>
+        <th>设备类型</th>
+        <th>设备编号</th>
+        <th>故障类型</th>
+        <th>故障时间</th>
+        <th>故障时长（分钟）</th>
+        <th>设备地址</th>
+      </tr>
+			{{each records}}
+				<tr>
+        		<td>{{$index + 1}}</td>
+        		<td>{{$value.stationName}}</td>
+        		<td>{{$value.deviceType}}</td>
+        		<td>{{$value.deviceId}}</td>
+        		<td>
+						{{if $value.failureType=="停止运营"}}
+							<span class="gz_stop">
+						{{else if $value.failureType=="维修模式"}}
+							<span class="gz_xiu">
+						{{else if $value.failureType=="故障模式"}}
+							<span class="gz_gz">
+						{{else if $value.failureType=="离线模式"}}
+							<span class="gz_off">
+						{{/if}}
+						{{$value.failureType}}</span>
+				</td>
+	      		<td>{{$value.failureTime}}</td>
+	      		<td>{{$value.duration}}</td>
+	      		<td>{{$value.areaCode}}</td>
+			  </tr>
+			{{/each}}
+    </table>
+
+</script>
+
+
+</head>
+<body>
+	<div class="city_div">
+		<div class="subway">
+			<div id='subway'></div>
+			<div class="c_top">
+				<h1>广州地铁设备监控</h1>
+				<h2 id="record_realtime"></h2>
+			</div>
+			<div class="sjj totalStatus">
+				<div class="sj_r">
+					<h1>报警站点数量</h1>
+					<h2>
+						<span status="failure_station_num">0</span> <b>个</b>
+					</h2>
+				</div>
+				<div class="sj_r">
+					<h1>报警设备数量</h1>
+					<h2>
+						<span status="failure_device_num">0</span> <b>台</b>
+					</h2>
+				</div>
+			</div>
+			<div class="c_lf">
+				<div class="lf_box">
+					<h1>设备状态详情</h1>
+					<table cellspacing="0" cellpadding="0" class="status_table">
+						<tr style="border-bottom:1px solid #1d91bf;">
+							<td status="gate_num" type="device" style="width: 50%">
+				              <div class="status_left"><img src="images/g_icon_yzj.png" ></div>
+				              <div class="status_right">
+				                <h2><span>0</span> <b>台</b></h2>
+				                <h3>云闸机</h3>
+				              </div> 
+				            </td>
+							<td status="ticket_num" type="device">
+				              <div class="status_left"><img src="images/g_icon_gpj.png" ></div>
+				              <div class="status_right">
+				                <h2><span>0</span> <b>台</b></h2>
+				                <h3>购票机</h3>
+				              </div> 
+				            </td>				            
+						</tr>
+						<tr>
+						    <td status="device_offline_num" type="status">
+								<div class="status_left"><img src="images/g_icon1.png" ></div>
+								<div class="status_right">
+									<h2><span>0</span> <b>台</b></h2>
+									<h3>离线状态</h3>
+								</div> 
+							</td>
+							<td status="device_failure_num" type="status">
+								<div class="status_left"><img src="images/g_icon2.png" ></div>
+								<div class="status_right">
+									<h2><span>0</span> <b>台</b></h2>
+									<h3><span class="guzhang">故障模式</span></h3>
+								</div> 
+							</td>
+						</tr>
+						<tr>
+							<td status="device_repair_num" type="status">
+								<div class="status_left"><img src="images/g_icon4.png" ></div>
+								<div class="status_right">
+									<h2><span>0</span> <b>台</b></h2>
+									<h3><span class="gz_xiu">维修模式</span></h3>
+								</div> 
+							</td>
+							<td status="device_stop_num" type="status">
+								<div class="status_left"><img src="images/g_icon5.png" ></div>
+								<div class="status_right">
+									<h2><span>0</span> <b>台</b></h2>
+									<h3><span class="gz_stop">停止运营</span></h3>
+								</div> 
+							</td>
+						</tr>
+					</table>  					
+				</div>
+
+				<div class="lf_box mt20">
+					<h1>故障高发排行（周）</h1>
+					<table id="failure_rank" cellspacing="0" cellpadding="0" class="clf_table">
+						<tr>
+							<th>次数</th>
+							<th>站点</th>
+							<th>设备编号</th>
+						</tr>
+					</table>
+				</div>
+				<div class="lf_box mt20">
+					<h1><span id="recordMax" style="cursor: pointer;"><img src="images/max.png" width="18" height="18" alt=""/></span>故障实时记录</h1>
+					<table class="clf_table" style="width: 343px;">
+						<tr>
+							<th style="width: 15%;">状态</th>
+							<th style="width: 25%;">设备编号</th>
+							<th style="width: 30%;">站点</th>
+						</tr>
+					</table>
+					<div class="clf_rf">
+						<table cellspacing="0" cellpadding="0" class="clf_table2">
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="c_rt">
+		   </div>
+		</div>
+	</div>
+	<div class="nfloatlayer dialog stationDialog">
+		<h1><span class="closeable"><img src="images/close.png" /></span><span class="title"></span></h1>
+		<div class="nfloatlayer_n">
+		  <div class="nfloatlayer_n_tab">
+		    <ul>
+		      <li type="gateMachine" class="gateBt">云闸机</li>
+		      <li type="ticketMachine" class="ticketBt">购票机</li>
+		    </ul>
+		  </div>
+		</div>
+		<div class="tableContainer">
+		</div>
+	</div>
+    <div class="recordlayer dialog recordDialog" id="realtimeRecord">
+        <h1><span class="closeable"><img src="images/close.png" /></span>故障实时记录</h1>
+        <div class="recordlayer_n">
+          <div class="searchdiv">
+	          <table border="0" class="formtable">
+	            <tbody>
+	              <tr>
+	                <td class="left">设备站点：</td>
+	                <td>
+	                	<input id="stationName" class="formtext" type="text" size="30"/>
+	                </td>
+	                <td class="left">设备编号：</td>
+	                <td><input id="deviceId" name="textfield" type="text" class="formtext" size="30"/></td>
+	                <td class="left">设备类型：</td>
+	                <td>
+	                	<select class="aaselect" id="deviceType">
+	                		<option value="0"></option>
+	                		<option value="1">云闸机</option>
+	                        <option value="2">购票机</option>
+	                	</select>
+	                </td>
+	                <td>&nbsp;</td>
+	              </tr>
+	              <tr>
+	                <td class="left" >故障类型：</td>
+	                <td>
+	                    <select class="aaselect" id="failureType">
+	                    	<option value="0"></option>
+	                        <option value="1">故障模式</option>
+                            <option value="2">通讯中断</option>
+                            <option value="3">维修模式</option>
+                            <option value="4">停止运营</option>
+                            <option value="5">离线模式</option>
+	                	</select>
+	                </td>
+	                <td class="left">故障时间：</td>
+	                <td colspan="3">
+	                  <table width="82%" border="0" align="left">
+	                    <tbody>
+	                      <tr>
+	                        <td>
+	                          <div class="calendar">
+	                            <input type="text" class="calendartxt" value="" />
+	                            <input id="startBtn" type="button" class="calendarbtn" />
+	                          </div>
+	                        </td>
+	                        <td width="10%" style="text-align:center;">至</td>
+	                        <td>
+	                          <div class="calendar">
+	                            <input type="text" class="calendartxt" value="" />
+	                            <input id="endBtn" type="button" class="calendarbtn" />
+	                          </div>
+	                        </td>
+	                      </tr>
+	                    </tbody>
+	                  </table>
+	                </td>
+	                <td><a href="javascript:void(0)" class="btnsearch" id="detailsBtn">查询</a></td>
+	              </tr>
+	            </tbody>
+	          </table> 
+          </div>
+	      <div class="tableContainer"> </div>
+	      <div class="pagecenter"><ul class="pagination" id="pagination1"></ul></div>
+      </div>
+   </div>	  	
+</body>
+</html>

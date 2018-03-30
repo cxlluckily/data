@@ -1,0 +1,180 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公共基础begin*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea,table, th, td,div {margin:0px auto;padding: 0;}
+img{border: 0 none;vertical-align: top;}
+i, em {font-style: normal;}
+ol, ul {list-style: none outside none;}
+input, select, button, h1, h2, h3, h4, h5, h6 {font-family: inherit;font-size: 100%;font-weight:normal;}
+table {border-collapse: collapse; border-spacing: 0;}
+body {background: none repeat scroll 0 0 #fff;color: #000;font-family: Microsoft YaHei,Helvetica,STHeiti STXihei,Microsoft JhengHei,Arial;font-size: 14px;height: 100%;}
+.clear{clear:both; font-size:1px; line-height:1px;}
+.fl{float:left; display:inline;}
+.fr{float:right; display:inline;}
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.mt35{margin-top:35px;}
+.mt40{margin-top:40px;}
+.ml40{margin-left:40px;}
+.ml50{margin-left:50px;}
+
+
+/*链接样式*/
+a{color:#000; text-decoration:none;outline: none;}
+a:hover{color:#e90714; text-decoration:none;}
+
+.city_div{width:1920px;height:1080px;background:url(../images/city_bg.jpg) no-repeat;position:relative;}
+.c_lf{
+  width:410px;float:left;padding-top:183px;padding-left:30px;
+  position: absolute;z-index: 10;
+}
+.c_rt{width:1920px;height:1080px;float:left;background:url(../images/subway_guangzhou.png) no-repeat center;position:relative;
+}
+#subway{
+  background:url(../images/subway_guangzhou.png) no-repeat center;
+  z-index: 1;
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+}
+.sitealarm1{position:absolute;background:url(../images/site_alarm.png) no-repeat;width:25px;height:22px;color:#fff;text-align:center;font-family:"Franklin Gothic heavy";font-size:14px;padding-top:3px;top:309px;right:630px;}
+.sitealarm2{position:absolute;background:url(../images/site_alarm.png) no-repeat;width:25px;height:22px;color:#fff;text-align:center;font-family:"Franklin Gothic heavy";font-size:14px;padding-top:3px;top:502px;right:630px;}
+.sitealarm3{position:absolute;background:url(../images/site_alarm.png) no-repeat;width:25px;height:22px;color:#fff;text-align:center;font-family:"Franklin Gothic heavy";font-size:14px;padding-top:3px;top:502px;left:550px;}
+.c_top{overflow:hidden;position:absolute;top:35px;left:30px;}
+.c_top h1{color:#f8b30f;font-size:70px;text-align:left;font-family:"迷你简菱心";padding:0px 0px 20px;line-height:70px;}
+.c_top h2{color:#3cfbe7;font-size:30px;line-height:30px;text-align:center;font-family:"Franklin Gothic Demi";padding:5px 25px 5px;border-radius:30px;border:1px solid #3cfbe7;display:inline-block;margin-left: 15px;}
+
+.sjj{position:absolute;left:410px;top:152px;width:520px;}
+.sj_r{background:url(../images/city_rebg.png) repeat;overflow:hidden;border-bottom:1px solid #6284a7;float:left;margin-left:40px;padding-top:10px;}
+.sj_r h1{font-family:"迷你简菱心";color:#fff;font-size:25px;line-height:25px;margin-top:20px;padding:12px 0px 0px 40px;float:left;width:150px;text-align:left;}
+.sj_r h2{font-family:"impact";color:#ffb400;font-size:60px;padding:0px 30px 5px 0px;float:left;width:200px;text-align:right;}
+.sj_r h2 b{font-size:30px;font-weight:normal;font-family:"迷你简菱心";}
+/* .floatlayer{width:520px;background-color:#06629c;border:1px solid #2a96ea;border-radius:15px;position:absolute;top:440px;left:860px;overflow:hidden;display: none}
+.floatlayer h1{height:43px;line-height:43px;text-align:center;color:#ffb400;font-size:22px;background-color:#0776bb;border-bottom:1px  solid #3494d9;font-family:"迷你简菱心";}
+/* .floatlayer_n{margin:10px;width:500px;} */
+/*设备故障弹框*/
+.floatlayer{width:520px;background-color:#06629c;border:1px solid #2a96ea;border-radius:15px;overflow:hidden;} 
+.floatlayer h1{height:43px;line-height:43px;text-align:center;color:#ffb400;font-size:22px;background-color:#0776bb;border-bottom:1px  solid #3494d9;font-family:"迷你简菱心";}
+ .floatlayer_n{margin:10px;width:500px;} 
+.floatlayer_table{width:100%;}
+.floatlayer_table td{border-bottom:1px solid #3494d9;color:#1ffae3;font-family:"宋体";font-size:12px;height:32px;padding-left:5px;}
+.floatlayer_table td.first{background:url(../images/dot.png) no-repeat left;padding-left:12px;}
+/* 柱状图上的 以后可以删了 */
+/* .lf_box{width:360px;background:url(../images/c_bg.png) repeat;border:1px solid #1673a5;padding:15px 20px 10px;overflow:hidden;float:left;}
+.lf_box h1{color:#ffb400;font-family:"文鼎CS大黑";font-size:25px;line-height:25px;margin-bottom:10px;}
+.lf_mm{text-align:center;} */
+.clf_table{width:100%;}
+.clf_table th{color:#fff;font-size:16px;text-align:center;border-bottom:1px solid #1d91bf;height:35px;}
+.clf_table td{color:#fff;font-size:14px;text-align:center;height:30px;}
+.clf_table .redfont{color:#fc4116;font-family:"arial";font-size:16px;}
+.clf_rf{height:248px;overflow:auto;}
+
+.clf_table2{width:100%;}
+.clf_table2 th{color:#fff;font-size:16px;text-align:center;border-bottom:1px solid #1d91bf;height:35px;}
+.clf_table2 td{color:#fff;font-size:14px;text-align:center;height:30px;}
+.clf_table2 .redfont{color:#fc4116;font-family:"arial";font-size:16px;}
+.clf_rf{height:235px;overflow:auto;}
+/* 故障1记录表头. */
+/* .clf_table2{width:100%;} */
+.clf_table2{width:343px;}
+.lf_box  th{color:#fff;font-size:16px;text-align:center;border-bottom:1px solid #1d91bf;height:35px;}
+
+/* 新改的 样式效果图 */
+/* 设备状态详情左上角状态详情 */
+.lf_box{width:360px;background:url(../images/c_bg.png) repeat;border:1px solid #1673a5;padding:15px 10px 10px;overflow:hidden;float:left;}
+/* 段落标题 */
+.lf_box h1{color:#ffb400;font-family:"文鼎CS大黑";font-size:25px;line-height:25px;margin-bottom:10px;}
+.lf_box h1 span{float:right;}
+/*20171025修改*/
+/* 设备状态详情 最下面行的状态模式样式            故障    停止中断gz_off  维修gz_xiu  停止运营gz_stop */
+ .gz_gz{color:#fc4116;}
+ /* 故障模式 */
+ .guzhang{
+   color: #fc4116;
+ }
+.gz_off{color:#0ac2fe;}
+.gz_xiu{color:#16fc3c;}
+.gz_stop{color:#fb07ca;} 
+/* 设备状态图标样式，左上角 */
+ .status_table{width:100%;}
+.status_table td{height:66px;cursor: pointer;}
+/* left指的图标 */
+.status_left{float:left;width:57px;height:57px;}
+/* right包含数字，台数，下面一行 */
+.status_right{float:left;margin-top:3px;}
+/* 数字 */
+ .status_right h2{font-size:28px;font-family:"Franklin Gothic Demi";color:#fff;} 
+/* 台单位 */
+ .status_right h2 b{font-size:16px;font-family:"迷你简菱心";font-weight:normal;} 
+/*台数下面一行注释 */
+ .status_right h3{font-size:12px;color:#fff;} 
+
+ 
+.nfloatlayer{width:588px;background-color:#06629c;border:1px solid #2a96ea;border-radius:15px;overflow:hidden;z-index: 10;position: absolute;}
+.nfloatlayer div.tableContainer{max-height: 500px;overflow: auto;}
+.nfloatlayer h1{height:43px;line-height:43px;text-align:center;color:#ffb400;font-size:22px;background-color:#0776bb;border-bottom:1px  solid #3494d9;font-family:"迷你简菱心";}
+.nfloatlayer h1 span.closeable{float:right;margin-right:20px;padding-top:12px;}
+.nfloatlayer_n{margin:10px;width:568px;}
+.nfloatlayer_n_tab{margin-bottom:10px;width:558px;margin-left:10px;overflow:hidden;}
+.nfloatlayer_n_tab li{float:left;margin-right:20px;width:75px;height:22px;line-height:22px;font-size:14px;text-align:center;border-radius:10px;background:#4d8db5;color:#0d5b8c;cursor:pointer;}
+.nfloatlayer_n_tab li.tabon{background:#0da2ff;color:#fff;}
+.nfloatlayer_table{width:100%;overflow:hidden;}
+.nfloatlayer_table th{color:#fff;background-color:#0776bb;height:30px;font-weight:normal;font-size:12px;text-align:center;}
+.nfloatlayer_table td{border-bottom:1px solid #3494d9;color:#1ffae3;font-family:"宋体";font-size:12px;height:32px;text-align:center;}
+
+.recordlayer{width:1158px;background-color:#06629c;border:1px solid #2a96ea;border-radius:15px;overflow:hidden;position: absolute;z-index: 10;}
+.recordlayer h1{height:43px;line-height:43px;text-align:center;color:#ffb400;font-size:22px;background-color:#0776bb;border-bottom:1px  solid #3494d9;font-family:"迷你简菱心";}
+.recordlayer h1 span{float:right;margin-right:20px;padding-top:12px;}
+.recordlayer_n{margin:10px;width:1138px;}
+.recordlayer_table{width:100%;}
+.recordlayer_table th{color:#fff;background-color:#0776bb;height:30px;font-weight:normal;font-size:12px;text-align:center;}
+.recordlayer_table td{border-bottom:1px solid #3494d9;color:#1ffae3;font-family:"宋体";font-size:12px;height:32px;text-align:center;}
+.searchdiv{padding:10px;}
+.formtable{border-collapse:collapse;width:90%;margin:0px auto;}
+.formtable td{padding-top:4px;padding-bottom:4px;color:#fff;}
+.formtable td.left{text-align:right;padding-right:20px;color:#fff;}
+.formtext{background:#338bc2;height:23px;width: 189px;border:1px solid #015589;border-radius:5px;padding-left:3px;padding-right:3px;line-height:23px;color:#fff;font-size:100%;}
+.calendar{background:#338bc2; width:193px; height:23px;border:1px solid #015589;border-radius:5px;margin:0;}
+.calendartxt{background:#338bc2;float:left; width:155px; height:19px;line-height:19px;font-size:12px;border:none;color:#fff;text-align:center;margin-left:3px;margin-top:2px;}
+.calendarbtn{float:right; width:18px; height:17px;cursor:pointer;background:url(../images/date.png) no-repeat;border:none;margin-right:3px;margin-top:2px;}
+a.btnsearch{background:#eb7603;color:#fff;width:66px;height:30px;border-radius:10px;text-align:center;line-height:30px;display:inline-block;font-size:14px;}
+
+/*下拉框样式*/
+.aaselect { width:195px; background:#338bc2; color:#fff;float:left;border-radius:5px;}
+.aaselect input{display:none;}
+.aaselect dl{}
+.aaselect dt{cursor:pointer;white-space:nowrap;overflow:hidden; background:url(../images/arrow_down.png) no-repeat right center;   height:23px; border:1px solid #015589;border-radius:5px;font-size:12px;color:#fff;}
+.aaselect dt.dt2{ height:23px; line-height:23px; }
+.aaselect dd{width:195px;overflow:hidden;background:#7fc4ef; border-top:none;cursor:pointer; display:inline-block;  position:absolute; }
+.aaselect dd.show{display:block;}
+.aaselect dd.noshow{display:none;}
+.aaselect ul{width:100%;overflow:hidden; padding:0; }
+.aaselect li{display:block;font-style:normal;white-space:nowrap; height:23px; line-height:23px;  padding-left:10px; color:#666;padding-top:3px;padding-bottom:3px;font-size:12px;}
+.aaselect li a{display:block; }
+.aaselect li.show,.inborder li#open{background:#087ec8; height:23px; color:#fff; width:100%;font-size:12px;} /*经过样式与当前样式*/
+.aaselect dt,.inborder li{height:23px;line-height:23px;padding-left:10px;} /*定义下拉列表高度*/
+.aaselect dt {height:23px; line-height:23px;}
+
+.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+div.dialog{
+	display: none;
+	visibility: visible;
+}
+div.dialog .closeable {
+	cursor: pointer;
+}
+
+  .ui-autocomplete {
+    max-height: 100px;
+    width: 189px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }

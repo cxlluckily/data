@@ -1,0 +1,96 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公共基础begin*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea,table, th, td,div {margin:0px auto;padding: 0;}
+img{border: 0 none;vertical-align: top;}
+i, em {font-style: normal;}
+ol, ul {list-style: none outside none;}
+input, select, button, h1, h2, h3, h4, h5, h6 {font-family: inherit;font-size: 100%;font-weight:normal;}
+table {border-collapse: collapse; border-spacing: 0;}
+body {background: none repeat scroll 0 0 #fff;color: #000;font-family: Microsoft YaHei,Helvetica,STHeiti STXihei,Microsoft JhengHei,Arial;font-size: 14px;height: 100%;}
+.clear{clear:both; font-size:1px; line-height:1px;}
+.fl{float:left; display:inline;}
+.fr{float:right; display:inline;}
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.mt35{margin-top:35px;}
+.mt40{margin-top:40px;}
+.ml40{margin-left:40px;}
+.ml50{margin-left:50px;}
+
+
+/*链接样式*/
+a{color:#000; text-decoration:none;outline: none;}
+a:hover{color:#e90714; text-decoration:none;}
+
+.index_div{width:1920px;height:1080px;background:url(../images/index_bg.jpg) no-repeat;position: relative;}
+.index_top{position:absolute;left:670px;top:20px;}
+.index_top h1{color:#f8b30f;font-size:65px;text-align:center;font-family:"迷你简菱心";padding:0px 0px 10px;line-height:65px;}
+.index_top h2{color:#3cfbe7;font-size:22px;line-height:25px;text-align:center;font-family:"Franklin Gothic Demi";padding:3px 0px 3px;border-radius:30px;border:1px solid #3cfbe7;width:300px;}
+.index_lf{width:468px;float:left;margin-left:50px;margin-top:30px;position: relative;}
+.r_t{}
+.r_t h1{color:#fff;font-family:"文鼎CS大黑";font-size:30px;line-height:30px;padding:10px 0px 0px;}
+.num_d{height:106px;margin-top:10px;}
+.num{width:78px;float:left;background:url(../images/num_d_bg.jpg) repeat-x center;height:106px;}
+.num p{width:70px;height:106px;background:url(../images/num_bg.png) no-repeat;color:#f6f6f6;font-size:100px;text-align:center;float:left;font-family:"impact";line-height:100px;}
+.r_m{background:url(../images/city_rebg.png) repeat;overflow:hidden;border-bottom:1px solid #6284a7;}
+.r_m_1{float:left;width:224px;padding-left:10px;}
+.r_m_2{float:right;}
+.r_m_1 h1{font-family:"迷你简菱心";color:#fff;font-size:25px;line-height:25px;padding:12px 0px;}
+.r_m_1 h2{font-family:"impact";color:#ffb400;font-size:50px;line-height:50px;padding:0px 0px 10px;}
+.in_re_table{width:468px;border-collapse:collapse;margin-bottom:4px;table-layout: fixed;}
+.in_re_table td{height:53px;color:#fff;text-align:center;font-size:20px;background:#0a90c2;white-space:nowrap;overflow:hidden;}
+.in_re_table td.j{height:53px;color:#fff;text-align:center;font-size:20px;background:#1159a3;white-space:nowrap;overflow:hidden;}
+.in_re_table td.ge{background:none;height:4px;line-height:4px;}
+.index_rt{width:1302px;float:left;margin-left:50px;padding-top:40px;overflow:hidden;}
+.index_r_t{width:1302px;overflow:hidden;}
+.r_data{width:410px;float:right;background:url(../images/r_d_bg.png) repeat;position: relative;}
+.r_data h1{color:#fff;font-family:"文鼎CS大黑";font-size:30px;line-height:30px;padding:20px 0px 20px;text-align:center;}
+.r_data li{border-bottom:1px solid #6284a7;height:62px;padding:0px 25px;line-height:62px;color:#fff;font-family:"迷你简菱心";font-size:25px;}
+.r_data li span{float:right;font-family:"impact";color:#ffb400;font-size:40px;}
+.r_data li.last{border-bottom:none;}
+.r_data2{width:410px;float:right;background:url(../images/r_d_bg.png) repeat;margin-top:35px;position: relative;}
+.r_data2 h1{color:#fff;font-family:"文鼎CS大黑";font-size:30px;line-height:30px;padding:20px 0px 20px;text-align:center;}
+.r_dd{padding:10px 25px;width:360px;overflow:hidden;}
+.r_dd_n{width:120px;float:left;padding-bottom:15px;}
+.r_dd_n li{color:#fff;font-family:"迷你简菱心";font-size:20px;line-height:20px;padding:10px 0px;}
+.r_dd_n li.nnm{font-family:"impact";color:#ffb400;font-size:40px;padding:10px 0px;}
+.index_r_b{width:1302px;overflow:hidden;margin-top:30px;}
+.chart{width:514px;float:left;overflow:hidden;}
+.chart_top{width:514px;height:13px;background:url(../images/b_top.png) no-repeat;line-height:13px;font-size:0px;position: relative;}
+.chart_bottom{width:514px;height:13px;background:url(../images/b_bottom.png) no-repeat;line-height:13px;font-size:0px;position: relative;}
+.chart_m{width:474px;background:url(../images/b_bg.png) repeat-y;padding:0px 20px;position: relative;}
+.chart_m h1{width:454px;background:url(../images/dot.jpg) no-repeat left;padding:10px 0px 10px 20px;color:#fff;font-family:"文鼎CS大黑";font-size:25px;line-height:25px;}
+.chart_m p{text-align:center;}
+
+.city_div{width:1920px;height:1080px;background:url(../images/city_bg.jpg) no-repeat;}
+.subway{
+	background:url(../images/subway_guangzhou.png) no-repeat center;
+	z-index: 0;
+	width: 1920px;
+	height: 1080px;
+	position: absolute;
+}
+.c_top{width:468px;overflow:hidden;float:left;}
+.c_top h1{color:#f8b30f;font-size:65px;font-family:"迷你简菱心";line-height:65px;}
+.c_top h2{color:#3cfbe7;font-size:22px;line-height:25px;text-align:center;font-family:"Franklin Gothic Demi";padding:3px 0px 3px;border-radius:30px;border:1px solid #3cfbe7;width:280px;margin-left:20px;margin-top:10px;}
+.city_top{width:1820px;margin:0px 50px;overflow:hidden;}
+.city_r_d{width:410px;overflow:hidden;float:right;margin-top:140px;}
+.c_t_lf{width:468px;float:left;margin-top:20px;}
+.city_lf{width:468px;float:left;overflow:hidden;position: relative;}
+.c_m{background:url(../images/city_rebg.png) repeat;overflow:hidden;border-bottom:1px solid #6284a7;width:440px;float:left;padding-left:15px;}
+.c_m h1{font-family:"迷你简菱心";color:#fff;font-size:25px;line-height:25px;padding:10px 0px;}
+.c_m h2{font-family:"impact";color:#ffb400;font-size:60px;line-height:60px;padding:0px 20px 8px 0px;text-align:right;}
+.clf{width:380px;height:173px;background:url(../images/c_lf.png) no-repeat center;float:left;margin-left:2px;padding:20px 21px 10px 20px;}
+.clf_n{width:190px;float:left;margin-top:5px;}
+.clf_n h3{text-align:center;font-family:"impact";color:#ffb400;font-size:40px;line-height:40px;padding:6px 0px;}
+.clf_n h4{text-align:center;font-family:"迷你简菱心";color:#fff;font-size:20px;line-height:20px;padding:3px 0px;}
+.city_b{width:1820px;margin:40px 50px 0px;}
+
+#skpMap{
+    z-index: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}

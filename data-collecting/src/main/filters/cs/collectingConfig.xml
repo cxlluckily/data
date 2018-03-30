@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>	
+	<table name="owner_order" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_hist" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_opt_hist" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_opt_hist_hist" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_single_ticket" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_single_ticket_hist" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card_hist" schema="cs_metro" hashColumn="order_no"/>
+	<table name="owner_order_pos_pay_info" schema="cs_metro" hashColumn="order_no"/>
+	
+	<table name="sjt_qr_code" schema="cs_metro" hashColumn="order_no"/>
+	<table name="sjt_qr_code_opt_hist" schema="cs_metro" hashColumn="sjt_qr_code_id"/>
+	
+	<table name="data_ypt_tran" schema="cs_metro" hashColumn="id"/>
+	<table name="data_ypt_tran_hist" schema="cs_metro" hashColumn="id"/>
+	
+	<table name="metro_member_debit_request_record" schema="cs_metro" hashColumn="debit_request_order_no"/>
+	<table name="metro_member_subscription_trans" schema="cs_metro" hashColumn="metro_member_card_num"/>
+	<table name="metro_member_info" schema="cs_metro" hashColumn="customer_id"/>
+	<table name="metro_member_card_subscription" schema="cs_metro" hashColumn="customer_id"/>
+	<table name="metro_member_card_num_pool" schema="cs_metro" hashColumn="ticket_logical_num"/>
+	<table name="metro_member_real_name" schema="cs_metro" hashColumn="customer_id"/>
+	
+	<table name="line_code" schema="cs_metro" hashColumn="city_code"/>
+	<table name="station_code" schema="cs_metro" hashColumn="city_code"/>
+</config>
+

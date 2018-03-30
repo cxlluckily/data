@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>	
+	<table name="dev_run_status_info" schema="sttrade_mws" hashColumn="device_id"/>
+	<table name="basi_status_id_info" schema="sttrade_mws" hashColumn="device_id"/>
+	<table name="device_heart_beat" schema="sttrade_mws" hashColumn="device_id"/>
+	<table name="basi_dev_info" schema="sttrade_mws" hashColumn="device_id"/>
+</config>
+

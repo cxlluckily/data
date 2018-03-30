@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.shankephone.data.monitoring.web.device.dao.mysql.FailureInfoHistoryDao">
+  
+  <select id="queryFailureRank" parameterType="String" resultType="map">
+		select city_code, station_code, station_name, device_id,count(*) failure_times
+		from failure_info_history
+		where failure_time>#{start_time} and city_code=#{city_code} and status_value!='1'
+		group by city_code, station_code, station_name, device_id
+		order by failure_times desc
+		LIMIT 5
+	</select>
+  
+ </mapper>
+
+
+
+
+
+

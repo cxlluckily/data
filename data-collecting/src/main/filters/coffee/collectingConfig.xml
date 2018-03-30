@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>	
+	<table name="t_taste_order" schema="coffee" hashColumn="id"/>
+	<table name="t_taste_order_detail" schema="coffee" hashColumn="order_id"/>
+	<table name="t_taste_order_flowrecord" schema="coffee" hashColumn="order_id"/>
+	<table name="order_refund_log" schema="coffee" hashColumn="order_id"/>
+</config>
+

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.shankephone.data.monitoring.computing.device.dao.mysql.FailureInfoDao">
+   
+    <insert id="insert"  parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfo">
+  		INSERT INTO FAILURE_INFO 
+  		<trim prefix="(" suffix=")" suffixOverrides=",">
+		city_code,
+		city_name,
+		line_code,
+		line_name,
+		station_code,
+		station_name,
+		device_id,
+		device_name,
+		device_type,
+		device_type_name,
+		failure_type,
+		status_value,
+		area_code,
+		failure_time,
+		create_time
+		</trim>
+  		<trim prefix="values (" suffix=")" suffixOverrides=","> 
+		#{city_code},
+		#{city_name},
+		#{line_code},
+		#{line_name},
+		#{station_code},
+		#{station_name},
+		#{device_id},
+		#{device_name},
+		#{device_type},
+		#{device_type_name},
+		#{failure_type},
+		#{status_value},
+		#{area_code},
+		#{failure_time},
+		#{create_time}
+		</trim> ON DUPLICATE KEY UPDATE 
+		status_value = values(status_value)
+  	</insert>
+  	
+  	<delete id="deleteByDeviceId">
+  		delete from failure_info where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type}
+  	</delete>
+  	
+  	<update id="update" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfo">
+  		update failure_info set online_status = #{online_status}, 
+  		online_status_name = #{online_status_name},
+  		status_value = #{status_value}, failure_time = #{failure_time}, 
+  		create_time = #{create_time} 
+  		where city_code = #{city_code} and device_id = #{device_id}
+  	</update>
+  	
+  	<select id="queryById" resultType="com.shankephone.data.monitoring.computing.device.model.FailureInfo">
+  		select * from failure_info where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type}
+  	</select>
+  	
+  	<select id="queryList" resultType="com.shankephone.data.monitoring.computing.device.model.FailureInfo">
+  		select * from failure_info order by failure_time desc 
+  	</select>
+  	
+  	<select id="queryDeviceCount" resultType="map">
+  		select city_code, count(station_code) station_num, ifnull(sum(device_num),0) device_num from (
+  			select city_code, station_code, count(device_id) device_num from failure_info group by city_code,station_code
+  		) a
+  	</select>
+  	
+  	<select id="queryStationDeviceCount" resultType="map">
+  		select city_code,station_name, station_code, status_value, count(device_id) device_num from failure_info group by city_code,station_name, status_value
+  	</select>
+  	
+  	<select id="queryFailureTypeCount" resultType="map">
+  		select city_code, status_value, count(device_id) device_num from failure_info group by city_code, status_value
+  	</select>
+  	
+  	<select id="selectPK" resultType="map">
+  		select city_code, device_id, failure_type, failure_time, status_value, create_time from failure_info 
+  		where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type} 
+  	</select>
+  	
+  	<!-- 站点-设备汇总 -->
+  	<select id="queryDeviceTypeCount" resultType="map">
+  		SELECT city_code, SUM(station_num) station_num, SUM(device_num) device_num FROM (
+			SELECT city_code, COUNT(station_name) station_num, device_num FROM (
+				SELECT city_code, station_name, COUNT(distinct device_id) device_num FROM failure_info 	
+				GROUP BY city_code, station_name
+			) a GROUP BY city_code, station_name
+			
+		) b GROUP BY city_code
+  	</select>
+  	<!-- 设备离线跟其他故障重复数据汇总 -->
+  	<select id="queryOfflineAndOtherRepeatCount" resultType="map">
+  		SELECT 
+		SUM(CASE WHEN a.status_value='1' AND a.device_type='01' THEN 1 ELSE 0 END) stop_gpj,
+		SUM(CASE WHEN a.status_value='1' AND a.device_type='02' THEN 1 ELSE 0 END) stop_zj,
+		SUM(CASE WHEN a.status_value='2' AND a.device_type='01' THEN 1 ELSE 0 END) repair_gpj,
+		SUM(CASE WHEN a.status_value='2' AND a.device_type='02' THEN 1 ELSE 0 END) repair_zj,
+		SUM(CASE WHEN a.status_value='3' AND a.device_type='01' THEN 1 ELSE 0 END) failure_gpj,
+		SUM(CASE WHEN a.status_value='3' AND a.device_type='02' THEN 1 ELSE 0 END) failure_zj,
+		SUM(CASE WHEN a.status_value='4' AND a.device_type='01' THEN 1 ELSE 0 END) interrupt_gpj,
+		SUM(CASE WHEN a.status_value='4' AND a.device_type='02' THEN 1 ELSE 0 END) interrupt_zj
+		 FROM failure_info a WHERE a.device_id IN
+		(SELECT f.device_id FROM failure_info f GROUP BY f.device_id HAVING COUNT(f.device_id) >1)
+  	</select>
+  	<!-- 站点故障 -->
+  	<select id="queryStationDeviceTypeCount" resultType="map">
+  		SELECT city_code, station_name, station_code, status_value, ifnull(SUM(ticket_num),0) ticket_num, ifnull(SUM(gate_num),0) gate_num FROM (
+			SELECT city_code, station_name, station_code, status_value, IFNULL(gpj_num,0) ticket_num, IFNULL(zj_num,0) gate_num FROM (
+				SELECT city_code, station_name, station_code, status_value, CASE WHEN device_type = '01' THEN device_num END gpj_num, 
+				CASE WHEN device_type = '02' THEN device_num END zj_num FROM (
+					SELECT city_code, station_name, MAX(station_code) station_code, status_value, device_type, COUNT(device_id) device_num
+					FROM 
+					(
+						SELECT city_code,station_name,station_code, CASE WHEN status_value = '4' THEN '3' ELSE status_value END status_value,
+						device_type, device_id FROM failure_info
+					) t   					
+					GROUP BY city_code, station_name, status_value,  device_type
+					ORDER BY city_code, station_code
+				) a
+			) b
+		) c GROUP BY city_code, station_name, station_code, status_value
+  	</select>
+  	<!-- 故障分类 -->
+  	<select id="queryFailureDeviceTypeCount" resultType="map">
+  		SELECT city_code, status_value, ifnull(SUM(ticket_num),0) ticket_num, ifnull(SUM(gate_num),0) gate_num FROM (
+			SELECT city_code, status_value, device_type, IFNULL(gpj_num,0) ticket_num, IFNULL(zj_num,0) gate_num FROM (
+				SELECT city_code, status_value, device_type, CASE WHEN device_type = '01' THEN device_num END gpj_num, 
+				CASE WHEN device_type = '02' THEN device_num END zj_num FROM (
+					SELECT city_code, status_value, device_type, COUNT(device_id) device_num FROM 
+					(
+						SELECT city_code, CASE WHEN status_value = '4' THEN '3' ELSE status_value END status_value,
+						device_type, device_id FROM failure_info
+					) t 
+					GROUP BY city_code, status_value, device_type
+				) a
+			) b
+		) c GROUP BY city_code, status_value
+  	</select>
+  	<select id="queryFailureData" resultType="map">
+	  	select 
+	       station_name,
+	       device_type,
+	       device_id,
+	       status_value,
+	       failure_time,
+	       TIMESTAMPDIFF(MINUTE, failure_time,now()) duration,
+	       area_code
+		from failure_info
+		<where>
+			<if test=" city_code != null and city_code != '' ">
+				city_code = #{city_code}
+			</if>
+			<if test=" status_value != null and status_value != '' ">
+				and status_value = #{status_value}
+			</if>
+		</where>
+  	</select>
+ </mapper>
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>	
+	<table name="tr_order_thrid" schema="finance.*" hashColumn="ext_order_id"/>
+	<table name="tr_redemption" schema="finance.*" hashColumn="ext_order_no"/>
+	<table name="tr_order_thrid_his" schema="finance.*" hashColumn="ext_order_id"/>
+	<table name="tr_order_thrid_his" schema="order_his" hashColumn="ext_order_id"/>
+</config>
+

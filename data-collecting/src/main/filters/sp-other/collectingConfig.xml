@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>
+	<table name="owner_order" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_hist" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_opt_hist" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_opt_hist_hist" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_single_ticket" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_single_ticket_hist" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card_hist" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="owner_order_pos_pay_info" schema="sttrade.*" hashColumn="order_no"/>
+	
+	<table name="sjt_qr_code" schema="sttrade.*" hashColumn="order_no"/>
+	<table name="sjt_qr_code_opt_hist" schema="sttrade.*" hashColumn="sjt_qr_code_id"/>
+	
+	<table name="data_ypt_tran" schema="sttrade.*" hashColumn="id"/>
+	<table name="data_ypt_tran_hist" schema="sttrade.*" hashColumn="id"/>
+	
+	<table name="metro_member_debit_request_record" schema="sttrade.*" hashColumn="debit_request_order_no"/>
+	<table name="metro_member_subscription_trans" schema="sttrade.*" hashColumn="metro_member_card_num"/>
+	<table name="metro_member_info" schema="sttrade.*" hashColumn="customer_id"/>
+	<table name="metro_member_card_subscription" schema="sttrade.*" hashColumn="customer_id"/>
+	<table name="metro_member_card_num_pool" schema="sttrade.*" hashColumn="ticket_logical_num"/>
+	<table name="metro_member_real_name" schema="sttrade.*" hashColumn="customer_id"/>
+	
+	<table name="line_code" schema="sttrade.*" hashColumn="city_code"/>
+	<table name="station_code" schema="sttrade.*" hashColumn="city_code"/>
+</config>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪客蜂</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="css/dialog.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/sockjs.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/json3.min.js"></script>
+<script src="js/template-web.js"></script>
+<script src="js/sub.js"></script>
+<script src="js/station-gz.js"></script>
+<script src="js/deviceStatusMap.js"></script>
+<script src="js/jqPaginator.js"></script>
+<script src="js/trans/entryTrans.js"></script>
+<script src="js/trans/exitTrans.js"></script>
+<script src="js/trans/supplementTrans.js"></script>
+<script src="js/trans/successTrans.js"></script>
+<script type="text/javascript">
+$(function(){
+	new EntryTrans();
+  	new ExitTrans();
+	new SupplementTrans();
+	new SuccessTrans();  
+});
+</script>
+
+<style>
+.one{
+	width: 50%;
+	height: 50%;
+	float: left;
+}
+</style>
+
+</head>
+<body>
+	<div class="city_div">
+		<div id = "entryChart" class = "one"></div>
+		<div id = "exitChart" class = "one"></div>
+		<div id = "supplementChart" class = "one"></div>
+		<div id = "successChart" class = "one"></div>
+   </div>	  	
+</body>
+</html>

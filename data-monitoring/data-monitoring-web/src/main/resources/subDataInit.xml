@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<sub topic="monitoring-init-time" class="com.shankephone.data.monitoring.web.device.processor.TimeInitProcessor" />
+	<sub topic="device_failure_\d{4}" class="com.shankephone.data.monitoring.web.device.processor.DeviceInitProcessor" />
+	<sub topic="device_failure_station_\d{4}" class="com.shankephone.data.monitoring.web.device.processor.StationInitProcessor" />
+	
+	<sub topic="trans:xxhf:*" class="com.shankephone.data.monitoring.web.device.processor.TransInitProcessor"/>
+
+</config>

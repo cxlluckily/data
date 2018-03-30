@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.shankephone.data.monitoring.web.device.dao.mysql.FailureDetailsDao">
+
+	<insert id="insert"
+		parameterType="com.shankephone.data.monitoring.web.device.model.FailureDetails">
+		INSERT IGNORE INTO FAILURE_DETAILS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			city_code,
+			city_name,
+			line_code,
+			line_name,
+			station_code,
+			station_name,
+			device_id,
+			device_name,
+			device_type,
+			device_type_name,
+			status_id,
+			status_value,
+			reason,
+			failure_time,
+			create_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{city_code},
+			#{city_name},
+			#{line_code},
+			#{line_name},
+			#{station_code},
+			#{station_name},
+			#{device_id},
+			#{device_name},
+			#{device_type},
+			#{device_type_name},
+			#{status_id},
+			#{status_value},
+			#{reason},
+			#{failure_time},
+			#{create_time}
+		</trim> 
+	</insert>
+
+
+	<delete id="deleteByDeviceId" parameterType="com.shankephone.data.monitoring.web.device.model.FailureDetails">
+  		delete from failure_details where city_code = #{city_code} and device_id = #{device_id}
+  	</delete>
+
+	<delete id="deleteByDeviceAndStatus" parameterType="com.shankephone.data.monitoring.web.device.model.FailureDetails">
+  		delete from failure_details where city_code = #{city_code} and device_id = #{device_id} and status_id = #{status_id}
+  	</delete>
+
+
+</mapper>

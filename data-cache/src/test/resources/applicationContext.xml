@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:redisson="http://redisson.org/schema/redisson"
+	xsi:schemaLocation="
+						http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://redisson.org/schema/redisson
+                        http://redisson.org/schema/redisson/redisson.xsd">
+
+	<context:component-scan base-package="com.shankephone.data.cache.*" />
+
+	<bean id="contextAccessor" class="com.shankephone.data.common.spring.ContextAccessor"/>
+	
+	<bean id="propertyAccessor" class="com.shankephone.data.common.util.PropertyAccessor">
+		<property name="fileLocations">
+			<array>
+				<value>classpath:application.properties</value>
+			</array>
+		</property>
+	</bean>
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<redisson:client id="defaultRedissonClient">
+		<redisson:sentinel-servers master-name="shankephone"
+		                           read-mode="MASTER"
+		                           subscription-mode="MASTER"
+		                           master-connection-minimum-idle-size="${redis.default.connection-minimum-idle-size}"
+		                           slave-connection-minimum-idle-size="${redis.default.connection-minimum-idle-size}"
+		                           timeout="${redis.default.timeout}"
+		                           database="${redis.default.database}">
+			<redisson:sentinel-address value="${redis.sentinel.address1}"/>
+			<redisson:sentinel-address value="${redis.sentinel.address2}"/>
+			<redisson:sentinel-address value="${redis.sentinel.address3}"/>
+		</redisson:sentinel-servers>
+	</redisson:client>
+	
+	<redisson:client id="cacheRedissonClient">
+		<redisson:sentinel-servers master-name="shankephone"
+		                           read-mode="MASTER"
+		                           subscription-mode="MASTER"
+		                           master-connection-minimum-idle-size="${redis.default.connection-minimum-idle-size}"
+		                           slave-connection-minimum-idle-size="${redis.default.connection-minimum-idle-size}"
+		                           timeout="${redis.default.timeout}"
+		                           database="${redis.cache.database}">
+			<redisson:sentinel-address value="${redis.sentinel.address1}"/>
+			<redisson:sentinel-address value="${redis.sentinel.address2}"/>
+			<redisson:sentinel-address value="${redis.sentinel.address3}"/>
+		</redisson:sentinel-servers>	
+	</redisson:client>
+	
+</beans>

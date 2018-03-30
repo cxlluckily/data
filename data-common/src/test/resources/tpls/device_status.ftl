@@ -1,0 +1,1 @@
+SELECT * FROM shankephone.device_status limit 1

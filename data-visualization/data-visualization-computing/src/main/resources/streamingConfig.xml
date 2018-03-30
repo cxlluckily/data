@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<app id="gateTransitCount">
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.GateTransitCountProcessor</processor>
+	</app>
+	<app id="ticketRealtimeRecord">
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.TicketRealtimeProcessor</processor>
+	</app>
+	<app id="todayUserCount">
+		<processor>com.shankephone.data.visualization.computing.user.streaming.UserCountProcessor</processor>
+	</app>
+	<app id="ticketCounts">
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.TicketCountProcessor</processor>
+	</app>
+	<app id="userSource">
+		<processor>com.shankephone.data.visualization.computing.user.streaming.UserSourceProcessor</processor>
+	</app>
+	<app id="payType">
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.PayTypeProcessor</processor>
+	</app>
+</config>

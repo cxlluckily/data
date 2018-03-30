@@ -1,0 +1,359 @@
+{
+    "table": {
+        "namespace": "SHANKEPHONE",
+        "name": "ORDER_INFO"
+    },
+    "rowkey": "key",
+    "columns": {
+        "ROWKEY": {
+            "cf": "rowkey",
+            "col": "key",
+            "type": "string"
+        },
+        "CITY_CODE": {
+            "cf": "D",
+            "col": "CITY_CODE",
+            "type": "string"
+        },
+        "ORDER_TYPE": {
+            "cf": "D",
+            "col": "ORDER_TYPE",
+            "type": "string"
+        },
+        "ORDER_ID": {
+            "cf": "D",
+            "col": "ORDER_ID",
+            "type": "string"
+        },
+        "ORDER_OWNER_ID": {
+            "cf": "D",
+            "col": "ORDER_OWNER_ID",
+            "type": "string"
+        },
+        "ORDER_ORDER_NO": {
+            "cf": "D",
+            "col": "ORDER_ORDER_NO",
+            "type": "string"
+        },
+        "ORDER_ORDER_SOURCE": {
+            "cf": "D",
+            "col": "ORDER_ORDER_SOURCE",
+            "type": "string"
+        },
+        "ORDER_PRODUCT_CODE": {
+            "cf": "D",
+            "col": "ORDER_PRODUCT_CODE",
+            "type": "string"
+        },
+        "ORDER_TOTAL_AMOUNT": {
+            "cf": "D",
+            "col": "ORDER_TOTAL_AMOUNT",
+            "type": "string"
+        },
+        "ORDER_REFUND_AMOUNT": {
+            "cf": "D",
+            "col": "ORDER_REFUND_AMOUNT",
+            "type": "string"
+        },
+        "ORDER_REFUND_MANAGER_ID": {
+            "cf": "D",
+            "col": "ORDER_REFUND_MANAGER_ID",
+            "type": "string"
+        },
+        "ORDER_ORDER_DATE": {
+            "cf": "D",
+            "col": "ORDER_ORDER_DATE",
+            "type": "string"
+        },
+        "ORDER_PAYMENT_DATE": {
+            "cf": "D",
+            "col": "ORDER_PAYMENT_DATE",
+            "type": "string"
+        },
+        "ORDER_REFUND_AMOUNT_DATE": {
+            "cf": "D",
+            "col": "ORDER_REFUND_AMOUNT_DATE",
+            "type": "string"
+        },
+        "ORDER_PAY_STATUS": {
+            "cf": "D",
+            "col": "ORDER_PAY_STATUS",
+            "type": "string"
+        },
+        "ORDER_DELETE_YN": {
+            "cf": "D",
+            "col": "ORDER_DELETE_YN",
+            "type": "string"
+        },
+        "ORDER_REG_DATE": {
+            "cf": "D",
+            "col": "ORDER_REG_DATE",
+            "type": "string"
+        },
+        "ORDER_SURCHARGE_AMOUNT": {
+            "cf": "D",
+            "col": "ORDER_SURCHARGE_AMOUNT",
+            "type": "string"
+        },
+        "ORDER_TIMESTAMP": {
+            "cf": "D",
+            "col": "ORDER_TIMESTAMP",
+            "type": "string"
+        },
+        "TICKET_ID": {
+            "cf": "D",
+            "col": "TICKET_ID",
+            "type": "string"
+        },
+        "TICKET_ORDER_NO": {
+            "cf": "D",
+            "col": "TICKET_ORDER_NO",
+            "type": "string"
+        },
+        "TICKET_TICKE_TYPE": {
+            "cf": "D",
+            "col": "TICKET_TICKE_TYPE",
+            "type": "string"
+        },
+        "TICKET_ORDER_STATUS": {
+            "cf": "D",
+            "col": "TICKET_ORDER_STATUS",
+            "type": "string"
+        },
+        "TICKET_SINGEL_TICKET_PRICE": {
+            "cf": "D",
+            "col": "TICKET_SINGEL_TICKET_PRICE",
+            "type": "string"
+        },
+        "TICKET_SINGLE_TICKET_NUM": {
+            "cf": "D",
+            "col": "TICKET_SINGLE_TICKET_NUM",
+            "type": "string"
+        },
+        "TICKET_NOTI_TAKE_TICKET_RESULT_DATE": {
+            "cf": "D",
+            "col": "TICKET_NOTI_TAKE_TICKET_RESULT_DATE",
+            "type": "string"
+        },
+        "TICKET_ACTUAL_TAKE_TICKET_NUM": {
+            "cf": "D",
+            "col": "TICKET_ACTUAL_TAKE_TICKET_NUM",
+            "type": "string"
+        },
+        "TICKET_TAKE_TICKET_TOKEN": {
+            "cf": "D",
+            "col": "TICKET_TAKE_TICKET_TOKEN",
+            "type": "string"
+        },
+        "TICKET_TAKE_TICKET_SEQ_NUM": {
+            "cf": "D",
+            "col": "TICKET_TAKE_TICKET_SEQ_NUM",
+            "type": "string"
+        },
+        "TICKET_PICKUP_STATION_CODE": {
+            "cf": "D",
+            "col": "TICKET_PICKUP_STATION_CODE",
+            "type": "string"
+        },
+        "TICKET_PICKUP_LINE_CODE": {
+            "cf": "D",
+            "col": "TICKET_PICKUP_LINE_CODE",
+            "type": "string"
+        },
+        "TICKET_GETOFF_LINE_CODE": {
+            "cf": "D",
+            "col": "TICKET_GETOFF_LINE_CODE",
+            "type": "string"
+        },
+        "TICKET_GETOFF_STATION_CODE": {
+            "cf": "D",
+            "col": "TICKET_GETOFF_STATION_CODE",
+            "type": "string"
+        },
+        "TICKET_PAY_CHANNEL_CODE": {
+            "cf": "D",
+            "col": "TICKET_PAY_CHANNEL_CODE",
+            "type": "string"
+        },
+        "TICKET_CANCLE_ORDER_DATE": {
+            "cf": "D",
+            "col": "TICKET_CANCLE_ORDER_DATE",
+            "type": "string"
+        },
+        "TICKET_CITY_CODE": {
+            "cf": "D",
+            "col": "TICKET_CITY_CODE",
+            "type": "string"
+        },
+        "TICKET_REG_DATE": {
+            "cf": "D",
+            "col": "TICKET_REG_DATE",
+            "type": "string"
+        },
+        "TICKET_TIMESTAMP": {
+            "cf": "D",
+            "col": "TICKET_TIMESTAMP",
+            "type": "string"
+        },
+        "TOPUP_ID": {
+            "cf": "D",
+            "col": "TOPUP_ID",
+            "type": "string"
+        },
+        "TOPUP_ORDER_NO": {
+            "cf": "D",
+            "col": "TOPUP_ORDER_NO",
+            "type": "string"
+        },
+        "TOPUP_ORDER_STATUS": {
+            "cf": "D",
+            "col": "TOPUP_ORDER_STATUS",
+            "type": "string"
+        },
+        "TOPUP_TOPUP_STATUS": {
+            "cf": "D",
+            "col": "TOPUP_TOPUP_STATUS",
+            "type": "string"
+        },
+        "TOPUP_TOPUP_DATE": {
+            "cf": "D",
+            "col": "TOPUP_TOPUP_DATE",
+            "type": "string"
+        },
+        "TOPUP_PAY_CHANNEL_CODE": {
+            "cf": "D",
+            "col": "TOPUP_PAY_CHANNEL_CODE",
+            "type": "string"
+        },
+        "TOPUP_CANCLE_ORDER_DATE": {
+            "cf": "D",
+            "col": "TOPUP_CANCLE_ORDER_DATE",
+            "type": "string"
+        },
+        "TOPUP_REG_DATE": {
+            "cf": "D",
+            "col": "TOPUP_REG_DATE",
+            "type": "string"
+        },
+        "TOPUP_TICKET_LOGIC_NUM": {
+            "cf": "D",
+            "col": "TOPUP_TICKET_LOGIC_NUM",
+            "type": "string"
+        },
+        "TOPUP_TIMESTAMP": {
+            "cf": "D",
+            "col": "TOPUP_TIMESTAMP",
+            "type": "string"
+        },
+        "OPT_ID": {
+            "cf": "D",
+            "col": "OPT_ID",
+            "type": "string"
+        },
+        "OPT_DEVICE_ID": {
+            "cf": "D",
+            "col": "OPT_DEVICE_ID",
+            "type": "string"
+        },
+        "OPT_TIMESTAMP": {
+            "cf": "D",
+            "col": "OPT_TIMESTAMP",
+            "type": "string"
+        },
+        "PAY_ORDER_ID": {
+            "cf": "D",
+            "col": "PAY_ORDER_ID",
+            "type": "string"
+        },
+        "PAY_EXT_ORDER_ID": {
+            "cf": "D",
+            "col": "PAY_EXT_ORDER_ID",
+            "type": "string"
+        },
+        "PAY_ENABLED": {
+            "cf": "D",
+            "col": "PAY_ENABLED",
+            "type": "string"
+        },
+        "PAY_PAYMENT_TYPE": {
+            "cf": "D",
+            "col": "PAY_PAYMENT_TYPE",
+            "type": "string"
+        },
+        "PAY_STATE": {
+            "cf": "D",
+            "col": "PAY_STATE",
+            "type": "string"
+        },
+        "PAY_CASH_AMOUNT": {
+            "cf": "D",
+            "col": "PAY_CASH_AMOUNT",
+            "type": "string"
+        },
+        "PAY_PAY_ACCOUNT": {
+            "cf": "D",
+            "col": "PAY_PAY_ACCOUNT",
+            "type": "string"
+        },
+        "PAY_REFUND_AMOUNT": {
+            "cf": "D",
+            "col": "PAY_REFUND_AMOUNT",
+            "type": "string"
+        },
+        "PAY_CREATE_TIME": {
+            "cf": "D",
+            "col": "PAY_CREATE_TIME",
+            "type": "string"
+        },
+        "PAY_PAY_TIME": {
+            "cf": "D",
+            "col": "PAY_PAY_TIME",
+            "type": "string"
+        },
+        "PAY_REFUND_TIME": {
+            "cf": "D",
+            "col": "PAY_REFUND_TIME",
+            "type": "string"
+        },
+        "PAY_MODIFY_TIME": {
+            "cf": "D",
+            "col": "PAY_MODIFY_TIME",
+            "type": "string"
+        },
+        "PAY_SOURCE": {
+            "cf": "D",
+            "col": "PAY_SOURCE",
+            "type": "string"
+        },
+        "PAY_PARTNER_NO": {
+            "cf": "D",
+            "col": "PAY_PARTNER_NO",
+            "type": "string"
+        },
+        "PAY_TOTAL_AMOUNT": {
+            "cf": "D",
+            "col": "PAY_TOTAL_AMOUNT",
+            "type": "string"
+        },
+        "PAY_COUPON_AMOUNT": {
+            "cf": "D",
+            "col": "PAY_COUPON_AMOUNT",
+            "type": "string"
+        },
+        "PAY_REFUND_STATE": {
+            "cf": "D",
+            "col": "PAY_REFUND_STATE",
+            "type": "string"
+        },
+        "PAY_TIMESTAMP": {
+            "cf": "D",
+            "col": "PAY_TIMESTAMP",
+            "type": "string"
+        },
+        "T_LAST_TIMESTAMP": {
+            "cf": "D",
+            "col": "T_LAST_TIMESTAMP",
+            "type": "string"
+        }
+    }
+}

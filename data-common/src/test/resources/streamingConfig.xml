@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	
+	<app id="testApp">
+		<processor>testProcessor1</processor>
+		<processor>testProcessor2</processor>
+	</app>
+
+</config>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.shankephone.data.monitoring.computing.device.dao.mysql.FailureInfoHistoryDao">
+   
+    <insert id="insert"  parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfoHistory">
+  		INSERT INTO failure_info_history 
+  		<trim prefix="(" suffix=")" suffixOverrides=",">
+		city_code,
+		city_name,
+		line_code,
+		line_name,
+		station_code,
+		station_name,
+		device_id,
+		device_name,
+		device_type,
+		device_type_name,
+		failure_type,
+		status_value,
+		area_code,
+		failure_time,
+		recover_time,
+		create_time
+		</trim>
+  		<trim prefix="values (" suffix=")" suffixOverrides=","> 
+		#{city_code},
+		#{city_name},
+		#{line_code},
+		#{line_name},
+		#{station_code},
+		#{station_name},
+		#{device_id},
+		#{device_name},
+		#{device_type},
+		#{device_type_name},
+		#{failure_type},
+		#{status_value},
+		#{area_code},
+		#{failure_time},
+		#{recover_time},
+		#{create_time}
+		</trim> ON DUPLICATE KEY UPDATE 
+		status_value = values(status_value), recover_time = values(recover_time)
+  	</insert>
+  	
+  	<delete id="deleteByDeviceId">
+  		delete from failure_info_history where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type}
+  		and recover_time is null
+  	</delete>
+  	
+  	<update id="recoverFailure" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfoHistory">
+  		update failure_info_history set recover_time = #{recover_time}
+  		where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type} 
+  		and recover_time is null
+  	</update>
+  	
+  	<update id="updateStatus" parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfoHistory">
+  		update failure_info_history set status_value = #{status_value}
+  		where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type} 
+  		and recover_time is null
+  	</update>
+  	
+  	<select id="queryById" resultType="com.shankephone.data.monitoring.computing.device.model.FailureInfoHistory">
+  		select * from failure_info_history where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type}
+  	</select>
+  	
+  	<select id="queryList" resultType="com.shankephone.data.monitoring.computing.device.model.FailureInfoHistory">
+  		select * from failure_info_history order by failure_time desc 
+  	</select>
+  	
+  	<select id="queryDeviceCount" resultType="map">
+  		select city_code, count(station_code) station_num, sum(device_num) device_num from (
+  			select city_code, station_code, count(device_id) device_num from failure_info_history group by city_code,station_code
+  		) a
+  	</select>
+  	
+  	<select id="queryStationDeviceCount" resultType="map">
+  		select city_code,station_name, station_code, status_value, count(device_id) device_num from failure_info_history group by city_code,station_name, status_value
+  	</select>
+  	
+  	<select id="queryFailureTypeCount" resultType="map">
+  		select city_code, status_value, count(device_id) device_num from failure_info_history group by city_code, status_value
+  	</select>
+  	
+  	<select id="selectPK" resultType="map">
+  		select city_code, device_id, failure_type, failure_time, status_value, create_time from failure_info_history 
+  		where city_code = #{city_code} and device_id = #{device_id} and failure_type = #{failure_type} 
+  		and recover_time is null
+  	</select>
+  	
+  
+  	
+ </mapper>
+
+
+
+
+
+

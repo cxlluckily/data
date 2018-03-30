@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.shankephone.data.monitoring.computing.device.dao.phoenix.FailureInfoPhoenixDao">
+	
+	<select id="select" resultType="com.shankephone.data.monitoring.computing.device.model.FailureInfoPhoenix">
+		select *
+		from shankephone.FAILURE_INFO
+		where recover_time is null
+	</select>
+	
+	<select id="queryFailureFrequence" parameterType="String" resultType="map">
+		select city_code, station_code, station_name, device_id,count(*) failure_times
+		from shankephone.FAILURE_INFO
+		where failure_time>#{start_time}
+		group by city_code, station_code, station_name, device_id
+		order by failure_times desc
+	</select>
+	
+	<select id="selectPK" resultType="String">
+		select PK
+		from shankephone.FAILURE_INFO
+		where PK like '#{city_code}\_#{device_id}\_%\_#{failure_type}' and recover_time is null
+	</select>
+	
+	<insert id="insert"  parameterType="com.shankephone.data.monitoring.computing.device.model.FailureInfoPhoenix">
+  		UPSERT INTO SHANKEPHONE.FAILURE_INFO 
+  		<trim prefix="(" suffix=")" suffixOverrides=",">
+		PK,
+		CITY_CODE,
+		CITY_NAME,
+		LINE_CODE,
+		LINE_NAME,
+		STATION_CODE,
+		STATION_NAME,
+		DEVICE_ID,
+		DEVICE_NAME,
+		DEVICE_TYPE,
+		DEVICE_TYPE_NAME,
+		FAILURE_TYPE,
+		STATUS_VALUE,
+		AREA_CODE,
+		FAILURE_TIME,
+		RECOVER_TIME,
+		CREATE_TIME
+		</trim>
+  		<trim prefix="values (" suffix=")" suffixOverrides=","> 
+		#{PK},
+		#{CITY_CODE},
+		#{CITY_NAME},
+		#{LINE_CODE},
+		#{LINE_NAME},
+		#{STATION_CODE},
+		#{STATION_NAME},
+		#{DEVICE_ID},
+		#{DEVICE_NAME},
+		#{DEVICE_TYPE},
+		#{DEVICE_TYPE_NAME},
+		#{FAILURE_TYPE},
+		#{STATUS_VALUE},
+		#{AREA_CODE},
+		#{FAILURE_TIME},
+		#{RECOVER_TIME},
+		#{CREATE_TIME}
+		</trim> 
+  	</insert>
+  	
+  	<delete id="deleteByPK" >
+  		DELETE FROM shankephone.FAILURE_INFO WHERE PK=#{PK}
+  	</delete>
+
+</mapper>

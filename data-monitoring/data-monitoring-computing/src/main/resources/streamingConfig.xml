@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<app id="failureProcess">
+		<processor>com.shankephone.data.monitoring.computing.device.streaming.FailureProcess</processor>
+	</app>
+</config>

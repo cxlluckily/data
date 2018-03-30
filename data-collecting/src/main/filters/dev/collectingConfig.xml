@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage-test</kafkaTopic>	
+	<!-- 先付后享 -->
+	<table name="owner_order" schema="data_storage_test_4401" hashColumn="order_no" />
+	<table name="owner_order_hist" schema="data_storage_test_4401" hashColumn="order_no" />
+	<table name="owner_order_opt_hist" schema="data_storage_test_4401" hashColumn="order_no,OPT_DATE"/>
+	<table name="owner_order_opt_hist_hist" schema="data_storage_test_4401" hashColumn="order_no"/>
+	<table name="owner_order_single_ticket" schema="data_storage_test_4401" hashColumn="order_no,REG_DATE"/>
+	<table name="owner_order_single_ticket_hist" schema="data_storage_test_4401" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card" schema="data_storage_test_4401" hashColumn="order_no"/>
+	<table name="owner_order_topup_subway_card_hist" schema="data_storage_test_4401" hashColumn="order_no"/>
+	
+	<table name="tr_order_thrid" schema="data_storage_test_4401" hashColumn="ext_order_id"/>
+	<table name="owner_order_pos_pay_info" schema="data_storage_test_4401" hashColumn="ORDER_NO"/>
+</config>
+
